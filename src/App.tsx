@@ -1,55 +1,132 @@
+import { useState } from "react";
 import jezirko from "./assets/jezirko.jpg";
 import logo from "./assets/logos/VB_design.png";
 
 export default function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const menuItems = [
+    { text: "SLUŽBY", id: "služby" },
+    { text: "VIZUALIZACE", id: "vizualizace" },
+    { text: "GALERIE", id: "galerie" },
+    { text: "O NÁS", id: "o_nás" },
+    { text: "KONTAKT", id: "kontakt" },
+  ];
+
   return (
-    <div className="bg-white min-h-screen font-mono scroll-smooth pt-24 relative">
+    <div className="bg-white min-h-screen font-mono scroll-smooth pt-20 relative">
       <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
-        <nav className="flex justify-center space-x-6 text-2xl font-light font-space-mono py-6">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+          {/* Ikona Domů */}
           <a
             href="#"
-            className="flex items-center px-6 py-2 transition duration-300 text-[#666666] relative
-              after:content-[''] after:absolute after:left-1/2 after:-bottom-5 after:w-0 after:h-[2px]
-              after:bg-[#9C834D] after:transition-all after:duration-300
-              hover:text-[#9C834D] hover:after:w-full hover:after:left-0"
+            className="flex items-center text-[#666666] hover:text-[#9C834D] transition duration-300"
             aria-label="Domů"
           >
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="w-6 h-6 mr-2"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path d="M3 10.75L12 3l9 7.75v9a1.25 1.25 0 0 1-1.25 1.25h-5.5A1.25 1.25 0 0 1 13 19.5v-4a1 1 0 0 0-2 0v4a1.25 1.25 0 0 1-1.25 1.25h-5.5A1.25 1.25 0 0 1 3 19.75v-9z" />
             </svg>
           </a>
 
-          {[
-            "SLUŽBY",
-            "VIZUALIZACE",
-            "GALERIE",
-            "O NÁS",
-            "KONTAKT",
-          ].map((text) => {
-            const isContact = text === "KONTAKT";
-            return (
+          {/* Desktop menu */}
+          <nav className="hidden md:flex space-x-6 text-2xl font-light font-space-mono">
+            {menuItems.map(({ text, id }) => {
+              const isContact = text === "KONTAKT";
+              return (
+                <a
+                  key={text}
+                  href={`#${id}`}
+                  className={
+                    "flex items-center px-6 py-2 transition duration-300 " +
+                    (isContact
+                      ? "bg-[#9C834D] text-white rounded-3xl hover:bg-[#666666]"
+                      : "text-[#666666] relative inline-block after:content-[''] after:absolute after:left-1/2 after:-bottom-5 after:w-0 after:h-[2px] after:bg-[#9C834D] after:transition-all after:duration-300 hover:text-[#9C834D] hover:after:w-full hover:after:left-0")
+                  }
+                >
+                  {text}
+                </a>
+              );
+            })}
+          </nav>
+
+          {/* Burger button pro mobil */}
+          <button
+            className="md:hidden text-[#666666]"
+            onClick={() => setIsOpen(true)}
+            aria-label="Otevřít menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Mobilní boční menu */}
+        <div
+          className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          } transition-transform duration-300 z-50`}
+        >
+          <div className="p-4 flex justify-between items-center border-b">
+            <div className="text-lg font-bold">Menu</div>
+            <button
+              onClick={() => setIsOpen(false)}
+              aria-label="Zavřít menu"
+              className="text-[#666666]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-8 w-8"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <nav className="flex flex-col p-4 gap-4 text-[#666666] font-space-mono font-light text-lg">
+            {menuItems.map(({ text, id }) => (
               <a
                 key={text}
-                href={`#${text.toLowerCase().replace(" ", "_")}`}
-                className={
-                  "flex items-center px-6 py-2 transition duration-300 " +
-                  (isContact
-                    ? "bg-[#9C834D] text-white rounded-3xl hover:bg-[#666666]"
-                    : "text-[#666666] relative inline-block after:content-[''] after:absolute after:left-1/2 after:-bottom-5 after:w-0 after:h-[2px] after:bg-[#9C834D] after:transition-all after:duration-300 hover:text-[#9C834D] hover:after:w-full hover:after:left-0")
-                }
+                href={`#${id}`}
+                onClick={() => setIsOpen(false)}
+                className="hover:text-[#9C834D] transition"
               >
                 {text}
               </a>
-            );
-          })}
-        </nav>
+            ))}
+          </nav>
+        </div>
+
+        {/* Překryvné pozadí, když je menu otevřené */}
+        {isOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-40 z-40"
+            onClick={() => setIsOpen(false)}
+          ></div>
+        )}
       </header>
 
-      <section className="relative w-full h-[88vh] bg-black overflow-hidden">
+      {/* Obsah stránky */}
+      <section className="relative w-full h-[94vh] bg-black overflow-hidden">
         <img
           src={jezirko}
           alt="Jezírko"
@@ -59,6 +136,12 @@ export default function App() {
           <div className="text-white space-y-4 max-w-xs sm:max-w-md">
             <img src={logo} alt="Logo" className="w-64 h-auto" />
           </div>
+        </div>
+
+        <div className="absolute top-1/2 right-20 transform -translate-y-1/2 p-6 max-w-xs rounded-lg shadow-lg">
+          <p className="text-white text-xl">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
         </div>
       </section>
 
