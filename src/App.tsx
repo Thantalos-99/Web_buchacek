@@ -138,7 +138,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="absolute top-1/2 right-20 transform -translate-y-1/2 p-6 max-w-xs rounded-lg shadow-lg">
+        <div className="absolute top-1/2 right-20 transform -translate-y-1/2 p-6 max-w-xs">
           <p className="text-white text-xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
