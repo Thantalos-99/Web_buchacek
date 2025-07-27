@@ -138,7 +138,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="absolute top-1/2 right-20 transform -translate-y-1/2 p-6 max-w-xs">
+        <div className="absolute top-1/2 right-20 transform -translate-y-[60%] translate-x-[-80px] p-6 max-w-xs">
           <p className="text-white text-xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
@@ -166,13 +166,29 @@ export default function App() {
         <h2 className="text-3xl font-bold">GALERIE</h2>
       </section>
 
-      <section
-        id="o_nás"
-        className="min-h-screen flex items-center justify-center bg-white"
-      >
-        <h2 className="text-3xl font-bold">O NÁS</h2>
+      <section id="o_nás" className="min-h-screen bg-white px-6 py-24">
+        {/* Nadpis */}
+        <h2 className="text-3xl font-bold text-center mb-12">O NÁS</h2>
+
+        {/* Obsah: Text + Obrázek */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-12 py-12">
+          {/* Text */}
+          <div className="max-w-md text-left ">
+            <p className="text-lg leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec est at libero placerat dapibus. 
+              Sed nec ligula nec justo tristique gravida. Donec efficitur, purus nec tincidunt bibendum, 
+              lorem sem ultrices nulla, sed vulputate odio lorem nec odio. Aliquam erat volutpat. Sed non sapien non 
+              nunc fermentum ultricies.
+            </p>
+          </div>
+
+          {/* Obrázek (zatím čtverec) */}
+          <div className="w-64 h-64 bg-gray-200 border border-gray-300"></div>
+        </div>
       </section>
 
+
+      {/* Footer */}
       <footer
         id="kontakt"
         className="bg-white border-t border-gray-200 py-16"
