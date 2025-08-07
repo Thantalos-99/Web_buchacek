@@ -1,6 +1,7 @@
 import { useState } from "react";
 import jezirko from "./assets/jezirko.jpg";
 import logo from "./assets/logos/VB_design.png";
+import EmblaGallery from './components/EmblaGallery'
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -161,9 +162,12 @@ export default function App() {
 
       <section
         id="galerie"
-        className="min-h-screen flex items-center justify-center bg-gray-100"
+        className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-8"
       >
-        <h2 className="text-3xl font-bold">GALERIE</h2>
+        <h2 className="text-3xl font-bold mb-8 mt-16">GALERIE</h2>
+        <div className="w-full max-w-4xl rounded-lg overflow-hidden">
+          <EmblaGallery />
+        </div>
       </section>
 
       <section id="o_nás" className="min-h-screen bg-white px-6 py-24">
