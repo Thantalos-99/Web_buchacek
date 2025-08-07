@@ -12,7 +12,7 @@ export default function App() {
 
   const menuItems = [
     { text: "SLUŽBY", id: "služby" },
-    { text: "VIZUALIZACE", id: "vizualizace" },
+    { text: "MATERIÁLY", id: "materiály" },
     { text: "GALERIE", id: "galerie" },
     { text: "O NÁS", id: "o_nás" },
     { text: "KONTAKT", id: "kontakt" },
@@ -154,10 +154,10 @@ export default function App() {
       </section>
 
       <section
-        id="vizualizace"
+        id="materiály"
         className="min-h-screen flex items-center justify-center bg-white"
       >
-        <h2 className="text-3xl font-bold">VIZUALIZACE</h2>
+        <h2 className="text-3xl font-bold">MATERIÁLY</h2>
       </section>
 
       <section
@@ -179,10 +179,9 @@ export default function App() {
           {/* Text */}
           <div className="max-w-md text-left ">
             <p className="text-lg leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec est at libero placerat dapibus. 
-              Sed nec ligula nec justo tristique gravida. Donec efficitur, purus nec tincidunt bibendum, 
-              lorem sem ultrices nulla, sed vulputate odio lorem nec odio. Aliquam erat volutpat. Sed non sapien non 
-              nunc fermentum ultricies.
+              Jmenuji se Vítězslav Bucháček a více než 10 let tvořím realizace kamenných prvnků všeho druhu. Pečlivost a profesionální přístup 
+              jsou pro mě samozřejmostí, protože věřím, že jen tak vznikají skutečně krásné a trvanlivé výsledky. 
+              Rád pomohu i vám proměnit vaše představy ve skutečnost.
             </p>
           </div>
 
@@ -201,7 +200,7 @@ export default function App() {
           <div>
             <h3 className="text-lg font-semibold mb-2">Kontakt</h3>
             <p className="mb-1">+420 123 456 789</p>
-            <p>info@firma.cz</p>
+            <p>vb.design@gmail.com</p>
           </div>
 
           <div>
@@ -242,13 +241,13 @@ export default function App() {
 
           <div>
             <h3 className="text-lg font-semibold mb-2">Adresa</h3>
-            <p className="mb-1">Ulice 123</p>
-            <p>100 00 Praha</p>
+            <p className="mb-1">56201 Ústí nad Orlicí</p>
+            <p>Česká republika</p>
           </div>
         </div>
 
         <div className="text-center text-sm text-gray-400 mt-12 font-space-mono">
-          © {new Date().getFullYear()} MojeFirma. Všechna práva vyhrazena.
+          © {new Date().getFullYear()} VB-Design. Všechna práva vyhrazena.
         </div>
       </footer>
 
