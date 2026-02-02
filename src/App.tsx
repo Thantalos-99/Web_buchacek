@@ -333,7 +333,7 @@ export default function App() {
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 text-center text-[#666666]  text-base">
           <div>
             <h3 className="text-lg font-semibold mb-2">Kontakt</h3>
-            <p className="mb-1">+420 123 456 789</p>
+            <p className="mb-1">+420 739 820 025</p>
             <p>kamendomu@gmail.com</p>
           </div>
 
