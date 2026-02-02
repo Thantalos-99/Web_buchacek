@@ -18,6 +18,30 @@ export default function App() {
     { text: "KONTAKT", id: "kontakt" },
   ];
 
+  // DATA PRO MATERIÁLY - TADY SI PAK DOPLNÍŠ CESTY K OBRÁZKŮM
+  // Místo placeholder URL (https://placehold.co...) tam dej importovanou proměnnou s fotkou
+  const materialsData = {
+    piskovce: [
+      { name: "Zelený Záměl", src: "https://placehold.co/300x300/e8aa55/white?text=Záměl" },
+      { name: "Bílý Božanov", src: "https://placehold.co/300x300/dddddd/333?text=Božanov" },
+      { name: "Žlutý Kocbeře", src: "https://placehold.co/300x300/f3e5ab/333?text=Kocbeře" },
+      { name: "Bíložlutý Vyhnánov", src: "https://placehold.co/300x300/fff8dc/333?text=Vyhnánov" },
+      { name: "Červený Javorka", src: "https://placehold.co/300x300/cd5c5c/white?text=Javorka" },
+      { name: "Šedozelený Dubenec", src: "https://placehold.co/300x300/8fbc8f/white?text=Dubenec" },
+      { name: "Šedožlutý Krákorka", src: "https://placehold.co/300x300/bdb76b/white?text=Krákorka" },
+    ],
+    ruly: [
+      { name: "Balkánské ruly", src: "https://placehold.co/300x300/a9a9a9/white?text=Balkán" },
+      { name: "Rula Otmuchow", src: "https://placehold.co/300x300/696969/white?text=Otmuchow" },
+      { name: "Moravská Droba", src: "https://placehold.co/300x300/808080/white?text=Droba" },
+    ],
+    zuly: [
+      { name: "Žuly", src: "https://placehold.co/300x300/708090/white?text=Žula" },
+      { name: "Amfibolit", src: "https://placehold.co/300x300/2f4f4f/white?text=Amfibolit" },
+      { name: "Kvarcit", src: "https://placehold.co/300x300/d2b48c/white?text=Kvarcit" },
+    ]
+  };
+
   return (
     <div className="bg-white min-h-screen font-mono scroll-smooth pt-20 relative">
       <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
@@ -29,7 +53,7 @@ export default function App() {
             aria-label="Domů"
           >
             <svg
-              className="w-6 h-6 mr-2"
+              className="w-10 h-10 mr-2" 
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -38,7 +62,7 @@ export default function App() {
           </a>
 
           {/* Desktop menu */}
-          <nav className="hidden md:flex space-x-6 text-2xl font-light font-space-mono">
+          <nav className="hidden md:flex space-x-6 text-2xl font-bold font-space-mono">
             {menuItems.map(({ text, id }) => {
               const isContact = text === "KONTAKT";
               return (
@@ -103,7 +127,7 @@ export default function App() {
             </button>
           </div>
 
-          <nav className="flex flex-col p-4 gap-4 text-[#666666] font-space-mono font-light text-lg">
+          <nav className="flex flex-col p-4 gap-4 text-[#666666] font-space-mono font-bold text-lg">
             {menuItems.map(({ text, id }) => (
               <a
                 key={text}
@@ -117,7 +141,7 @@ export default function App() {
           </nav>
         </div>
 
-        {/* Překryvné pozadí, když je menu otevřené */}
+        {/* Překryvné pozadí */}
         {isOpen && (
           <div
             className="fixed inset-0 bg-black bg-opacity-40 z-40"
@@ -126,7 +150,7 @@ export default function App() {
         )}
       </header>
 
-      {/* Obsah stránky */}
+      {/* Hero Section */}
       <section className="relative w-full h-[94vh] bg-black overflow-hidden">
         <img
           src={jezirko}
@@ -139,8 +163,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="absolute top-1/2 right-20 transform -translate-y-[-60px] translate-x-[-4
-      0px] 
+        <div className="absolute top-1/2 right-20 transform -translate-y-[-60px] translate-x-[-40px] 
                 p-6 max-w-2xl rounded-2xl bg-gray-900/20">
           <p className="text-white text-lg leading-relaxed text-center">
             Naše firma poskytuje služby zaměřené na úpravu a zvelebování zahrad,
@@ -148,26 +171,20 @@ export default function App() {
           (parapety, vnitřní kamenné obklady, zárubně, obklady podezdívek).
           </p>
         </div>
-
       </section>
 
-     <section
+      {/* SLUŽBY */}
+      <section
         id="služby"
         className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-6 py-16 text-center"
       >
         <h2 className="text-3xl font-bold mb-12 uppercase tracking-wide text-gray-800">
           Služby
         </h2>
-
-        {/* Grid kontejner pro 3 sloupce */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
-          
-          {/* 1. Sloupec - ZAHRADA */}
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
-            <h3 className="text-xl font-bold mb-4 text-green-700 border-b pb-2">
-              ZAHRADA
-            </h3>
-            <ul className="text-gray-700 space-y-2 text-left list-disc list-inside">
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center">
+            <h3 className="text-xl font-bold mb-4 text-green-700 border-b pb-2 w-full">ZAHRADA</h3>
+            <ul className="text-gray-700 space-y-2 text-center">
               <li>Grafické návrhy zahrad</li>
               <li>Realizace zahrad</li>
               <li>Úpravy stávajících zahrad</li>
@@ -175,13 +192,9 @@ export default function App() {
               <li>Zahradní zídky a skalky</li>
             </ul>
           </div>
-
-          {/* 2. Sloupec - KAMENICKÉ PRÁCE */}
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
-            <h3 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2">
-              KAMENICKÉ PRÁCE
-            </h3>
-            <ul className="text-gray-700 space-y-2 text-left list-disc list-inside">
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center">
+            <h3 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2 w-full">KAMENICKÉ PRÁCE</h3>
+            <ul className="text-gray-700 space-y-2 text-center">
               <li>Kamenné dlažby</li>
               <li>Opěrné zdi a zahradní zídky</li>
               <li>Vyvýšené záhony a skalky</li>
@@ -193,21 +206,17 @@ export default function App() {
               <li>Terasy a pergoly</li>
             </ul>
           </div>
-
-          {/* 3. Sloupec - DŘEVO V ZAHRADĚ */}
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
-            <h3 className="text-xl font-bold mb-4 text-amber-700 border-b pb-2">
-              DŘEVO V ZAHRADĚ
-            </h3>
-            <ul className="text-gray-700 space-y-2 text-left list-disc list-inside">
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center">
+            <h3 className="text-xl font-bold mb-4 text-amber-700 border-b pb-2 w-full">DŘEVO V ZAHRADĚ</h3>
+            <ul className="text-gray-700 space-y-2 text-center">
               <li>Terasy a mola</li>
               <li>Posezení v kombinaci dřevo a kámen</li>
             </ul>
           </div>
-
         </div>
       </section>
 
+      {/* MATERIÁLY - UPRAVENO NA DLAŽDICE */}
       <section
         id="materiály"
         className="min-h-screen flex flex-col items-center justify-center bg-white px-6 py-16 text-center"
@@ -216,67 +225,84 @@ export default function App() {
           Materiály
         </h2>
 
-        {/* Úvodní text */}
         <p className="max-w-3xl text-gray-700 text-lg leading-relaxed mb-12">
           Pro realizace zahrad a zahradních doplňků používáme různé materiály. 
-          Materiál je volen pečlivě podle regionu a podle účelu použití, 
+          <br /> Materiál je volen pečlivě podle regionu a podle účelu použití, 
           aby dokonale zapadl do rázu vaší zahrady.
         </p>
 
-        {/* Grid kontejner pro 3 sloupce */}
+        {/* Grid kontejner pro 3 hlavní kategorie */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
           
-          {/* 1. Sloupec - PÍSKOVCE */}
-          <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col border border-gray-100 items-center">
+          {/* 1. Sloupec - PÍSKOVCE (Dlaždice) */}
+          <div className="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col border border-gray-100 items-center">
             <h3 className="text-xl font-bold mb-4 text-amber-600 border-b pb-2 w-full">
               PÍSKOVCE
             </h3>
-            <p className="text-sm text-gray-500 mb-3 italic">Různé barevné varianty:</p>
-            {/* Odstraněno list-disc, přidáno text-center */}
-            <ul className="text-gray-700 space-y-2 text-center">
-              <li>Zelený pískovec Záměl</li>
-              <li>Bílý pískovec Božanov</li>
-              <li>Světle žlutý Kocbeře</li>
-              <li>Bíložlutý Vyhnánov</li>
-              <li>Červený Javorka</li>
-              <li>Šedozelený Dubenec</li>
-              <li>Šedožlutý Krákorka</li>
-            </ul>
+            {/* Grid pro obrázky (2 vedle sebe) */}
+            <div className="grid grid-cols-2 gap-3 w-full">
+              {materialsData.piskovce.map((item, index) => (
+                <div key={index} className="relative group overflow-hidden rounded-md shadow-sm aspect-square cursor-pointer">
+                  <img 
+                    src={item.src} 
+                    alt={item.name} 
+                    className="object-cover w-full h-full transform group-hover:scale-110 transition duration-500"
+                  />
+                  {/* Popisek přes obrázek dole */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-1">
+                    <p className="text-white text-xs font-bold uppercase">{item.name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* 2. Sloupec - RULY A DROBA */}
-          <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col border border-gray-100 items-center">
+          {/* 2. Sloupec - RULY A DROBA (Dlaždice) */}
+          <div className="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col border border-gray-100 items-center">
             <h3 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2 w-full">
-              RULY
+              RULY A DROBA
             </h3>
-            <ul className="text-gray-700 space-y-2 text-center mb-6">
-              <li>Balkánské ruly (různé odstíny)</li>
-              <li>Stébelnatá šedočerná rula Otmuchow</li>
-            </ul>
-
-            <h3 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2 w-full">
-              MORAVSKÁ DROBA
-            </h3>
-            <ul className="text-gray-700 space-y-2 text-center">
-              <li>Tradiční moravský kámen</li>
-            </ul>
+            <div className="grid grid-cols-2 gap-3 w-full">
+              {materialsData.ruly.map((item, index) => (
+                <div key={index} className="relative group overflow-hidden rounded-md shadow-sm aspect-square cursor-pointer">
+                  <img 
+                    src={item.src} 
+                    alt={item.name} 
+                    className="object-cover w-full h-full transform group-hover:scale-110 transition duration-500"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-1">
+                    <p className="text-white text-xs font-bold uppercase">{item.name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* 3. Sloupec - ŽULY A OSTATNÍ */}
-          <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col border border-gray-100 items-center">
+          {/* 3. Sloupec - ŽULY (Dlaždice) */}
+          <div className="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col border border-gray-100 items-center">
             <h3 className="text-xl font-bold mb-4 text-slate-800 border-b pb-2 w-full">
-              ŽULY A TVRDÉ KAMENY
+              TVRDÉ KAMENY
             </h3>
-            <ul className="text-gray-700 space-y-2 text-center">
-              <li>Žuly v různých odstínech</li>
-              <li>Amfibolit</li>
-              <li>Kvarcit</li>
-            </ul>
+            <div className="grid grid-cols-2 gap-3 w-full">
+              {materialsData.zuly.map((item, index) => (
+                <div key={index} className="relative group overflow-hidden rounded-md shadow-sm aspect-square cursor-pointer">
+                  <img 
+                    src={item.src} 
+                    alt={item.name} 
+                    className="object-cover w-full h-full transform group-hover:scale-110 transition duration-500"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-1">
+                    <p className="text-white text-xs font-bold uppercase">{item.name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>
       </section>
 
+      {/* Galerie */}
       <section
         id="galerie"
         className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-8"
@@ -287,23 +313,17 @@ export default function App() {
         </div>
       </section>
 
+      {/* O NÁS */}
       <section id="o_nás" className="min-h-screen bg-white px-6 py-24">
-        {/* Nadpis */}
         <h2 className="text-3xl font-bold text-center mb-12">O NÁS</h2>
-
-        {/* Obsah: Text + Obrázek */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 py-12">
-          {/* Text */}
           <div className="max-w-md text-center ">
             <p className="text-lg leading-relaxed">
               Naše rodinná firma tvoří kamenná návrhy a realizace již déle než 10 let. Pečlivost a profesionální přístup jsou pro nás samozřejmostí, protože věříme, že jen tak vznikají skutečně krásné a trvanlivé výsledky. Rádi pomúžeme i Vám proměnit vaše představy ve skutečnost.
             </p>
           </div>
-
-          
         </div>
       </section>
-
 
       {/* Footer */}
       <footer
@@ -320,33 +340,13 @@ export default function App() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Sledujte nás</h3>
             <div className="flex justify-center space-x-6 text-xl">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#9C834D] transition"
-                aria-label="Instagram"
-              >
-                <svg
-                  className="w-7 h-7"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#9C834D] transition" aria-label="Instagram">
+                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M7.75 2A5.75 5.75 0 0 0 2 7.75v8.5A5.75 5.75 0 0 0 7.75 22h8.5A5.75 5.75 0 0 0 22 16.25v-8.5A5.75 5.75 0 0 0 16.25 2h-8.5zM4 7.75A3.75 3.75 0 0 1 7.75 4h8.5A3.75 3.75 0 0 1 20 7.75v8.5A3.75 3.75 0 0 1 16.25 20h-8.5A3.75 3.75 0 0 1 4 16.25v-8.5zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm5.25-2a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5z" />
                 </svg>
               </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#9C834D] transition"
-                aria-label="Facebook"
-              >
-                <svg
-                  className="w-7 h-7"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#9C834D] transition" aria-label="Facebook">
+                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M13.5 10.5V8.75a1.25 1.25 0 0 1 1.25-1.25h1.25V5h-2.5A3.75 3.75 0 0 0 10.25 8.75v1.75H8v2.5h2.25V19h3.25v-6h2.25l.5-2.5h-2.75z" />
                 </svg>
               </a>
@@ -371,14 +371,7 @@ export default function App() {
         className="fixed bottom-6 right-6 p-3 rounded-full bg-black/50 text-white hover:bg-black/80 transition duration-300 shadow-lg z-50"
         aria-label="Scroll to top"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
         </svg>
       </button>
