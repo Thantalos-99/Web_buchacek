@@ -319,7 +319,7 @@ export default function App() {
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 py-12">
           <div className="max-w-md text-center ">
             <p className="text-lg leading-relaxed">
-              Naše rodinná firma tvoří kamenná návrhy a realizace již déle než 10 let. Pečlivost a profesionální přístup jsou pro nás samozřejmostí, protože věříme, že jen tak vznikají skutečně krásné a trvanlivé výsledky. Rádi pomúžeme i Vám proměnit vaše představy ve skutečnost.
+              Naše rodinná firma tvoří kamenné návrhy a realizace již déle než 10 let. Pečlivost a profesionální přístup jsou pro nás samozřejmostí, protože věříme, že jen tak vznikají skutečně krásné a trvanlivé výsledky. Rádi pomúžeme i Vám proměnit vaše představy ve skutečnost.
             </p>
           </div>
         </div>
