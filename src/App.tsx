@@ -18,27 +18,26 @@ export default function App() {
     { text: "KONTAKT", id: "kontakt" },
   ];
 
-  // DATA PRO MATERIÁLY - TADY SI PAK DOPLNÍŠ CESTY K OBRÁZKŮM
-  // Místo placeholder URL (https://placehold.co...) tam dej importovanou proměnnou s fotkou
+  // DATA PRO MATERIÁLY 
   const materialsData = {
     piskovce: [
-      { name: "Zelený Záměl", src: "https://placehold.co/300x300/e8aa55/white?text=Záměl" },
-      { name: "Bílý Božanov", src: "https://placehold.co/300x300/dddddd/333?text=Božanov" },
-      { name: "Žlutý Kocbeře", src: "https://placehold.co/300x300/f3e5ab/333?text=Kocbeře" },
-      { name: "Bíložlutý Vyhnánov", src: "https://placehold.co/300x300/fff8dc/333?text=Vyhnánov" },
-      { name: "Červený Javorka", src: "https://placehold.co/300x300/cd5c5c/white?text=Javorka" },
-      { name: "Šedozelený Dubenec", src: "https://placehold.co/300x300/8fbc8f/white?text=Dubenec" },
-      { name: "Šedožlutý Krákorka", src: "https://placehold.co/300x300/bdb76b/white?text=Krákorka" },
+      { name: "Zelený Záměl", src: "/images/kameny/zelený záměl.jpg" },
+      { name: "Bílý Božanov", src: "/images/kameny/bozanov.jpeg" },
+      { name: "Žlutý Kocbeře", src: "/images/kameny/kocbere.PNG" },
+      { name: "Bíložlutý Vyhnánov", src: "/images/kameny/vyhnánov.jfif" },
+      { name: "Červený Javorka", src: "/images/kameny/javorka.jpg" },
+      { name: "Šedozelený Dubenec", src: "/images/kameny/Dubenec.jpg" },
+      { name: "Šedožlutý Krákorka", src: "/images/kameny/krakorka.jpg" },
     ],
     ruly: [
-      { name: "Balkánské ruly", src: "https://placehold.co/300x300/a9a9a9/white?text=Balkán" },
-      { name: "Rula Otmuchow", src: "https://placehold.co/300x300/696969/white?text=Otmuchow" },
-      { name: "Moravská Droba", src: "https://placehold.co/300x300/808080/white?text=Droba" },
+      { name: "Balkánské ruly", src: "/images/kameny/rula.JPG" },
+      { name: "Rula Otmuchow", src: "/images/kameny/rula otmuchow.jpg" },
+      { name: "Moravská Droba", src: "/images/kameny/droba.jpeg" },
     ],
     zuly: [
-      { name: "Žuly", src: "https://placehold.co/300x300/708090/white?text=Žula" },
-      { name: "Amfibolit", src: "https://placehold.co/300x300/2f4f4f/white?text=Amfibolit" },
-      { name: "Kvarcit", src: "https://placehold.co/300x300/d2b48c/white?text=Kvarcit" },
+      { name: "Žuly", src: "/images/kameny/zula.webp" },
+      { name: "Amfibolit", src: "/images/kameny/amfibolit.jpg" },
+      { name: "Kvarcit", src: "/images/kameny/Kvarcit.jpg" },
     ]
   };
 
