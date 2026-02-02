@@ -1,6 +1,6 @@
 import { useState } from "react";
 import jezirko from "./assets/jezirko.jpg";
-import logo from "./assets/logos/VB_design.png";
+import logo from "./assets/logos/kamendomu.svg";
 import EmblaGallery from './components/EmblaGallery'
 
 export default function App() {
@@ -139,25 +139,142 @@ export default function App() {
           </div>
         </div>
 
-        <div className="absolute top-1/2 right-20 transform -translate-y-[60%] translate-x-[-80px] p-6 max-w-xs">
-          <p className="text-white text-xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <div className="absolute top-1/2 right-20 transform -translate-y-[-60px] translate-x-[-4
+      0px] 
+                p-6 max-w-2xl rounded-2xl bg-gray-900/20">
+          <p className="text-white text-lg leading-relaxed text-center">
+            Naše firma poskytuje služby zaměřené na úpravu a zvelebování zahrad,
+          okolí domů a případně i drobné úpravy domů samotných
+          (parapety, vnitřní kamenné obklady, zárubně, obklady podezdívek).
           </p>
+        </div>
+
+      </section>
+
+     <section
+        id="služby"
+        className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-6 py-16 text-center"
+      >
+        <h2 className="text-3xl font-bold mb-12 uppercase tracking-wide text-gray-800">
+          Služby
+        </h2>
+
+        {/* Grid kontejner pro 3 sloupce */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
+          
+          {/* 1. Sloupec - ZAHRADA */}
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
+            <h3 className="text-xl font-bold mb-4 text-green-700 border-b pb-2">
+              ZAHRADA
+            </h3>
+            <ul className="text-gray-700 space-y-2 text-left list-disc list-inside">
+              <li>Grafické návrhy zahrad</li>
+              <li>Realizace zahrad</li>
+              <li>Úpravy stávajících zahrad</li>
+              <li>Vodní prvky (jezírka, vodopády, potoky)</li>
+              <li>Zahradní zídky a skalky</li>
+            </ul>
+          </div>
+
+          {/* 2. Sloupec - KAMENICKÉ PRÁCE */}
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
+            <h3 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2">
+              KAMENICKÉ PRÁCE
+            </h3>
+            <ul className="text-gray-700 space-y-2 text-left list-disc list-inside">
+              <li>Kamenné dlažby</li>
+              <li>Opěrné zdi a zahradní zídky</li>
+              <li>Vyvýšené záhony a skalky</li>
+              <li>Různé typy schodišť</li>
+              <li>Obklady soklů a podezdívek</li>
+              <li>Parapety a dveřní zárubně</li>
+              <li>Ohniště a grily</li>
+              <li>Zahradní posezení</li>
+              <li>Terasy a pergoly</li>
+            </ul>
+          </div>
+
+          {/* 3. Sloupec - DŘEVO V ZAHRADĚ */}
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
+            <h3 className="text-xl font-bold mb-4 text-amber-700 border-b pb-2">
+              DŘEVO V ZAHRADĚ
+            </h3>
+            <ul className="text-gray-700 space-y-2 text-left list-disc list-inside">
+              <li>Terasy a mola</li>
+              <li>Posezení v kombinaci dřevo a kámen</li>
+            </ul>
+          </div>
+
         </div>
       </section>
 
       <section
-        id="služby"
-        className="min-h-screen flex items-center justify-center bg-gray-100"
-      >
-        <h2 className="text-3xl font-bold">SLUŽBY</h2>
-      </section>
-
-      <section
         id="materiály"
-        className="min-h-screen flex items-center justify-center bg-white"
+        className="min-h-screen flex flex-col items-center justify-center bg-white px-6 py-16 text-center"
       >
-        <h2 className="text-3xl font-bold">MATERIÁLY</h2>
+        <h2 className="text-3xl font-bold mb-6 uppercase tracking-wide text-gray-800">
+          Materiály
+        </h2>
+
+        {/* Úvodní text */}
+        <p className="max-w-3xl text-gray-700 text-lg leading-relaxed mb-12">
+          Pro realizace zahrad a zahradních doplňků používáme různé materiály. 
+          Materiál je volen pečlivě podle regionu a podle účelu použití, 
+          aby dokonale zapadl do rázu vaší zahrady.
+        </p>
+
+        {/* Grid kontejner pro 3 sloupce */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
+          
+          {/* 1. Sloupec - PÍSKOVCE */}
+          <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col border border-gray-100 items-center">
+            <h3 className="text-xl font-bold mb-4 text-amber-600 border-b pb-2 w-full">
+              PÍSKOVCE
+            </h3>
+            <p className="text-sm text-gray-500 mb-3 italic">Různé barevné varianty:</p>
+            {/* Odstraněno list-disc, přidáno text-center */}
+            <ul className="text-gray-700 space-y-2 text-center">
+              <li>Zelený pískovec Záměl</li>
+              <li>Bílý pískovec Božanov</li>
+              <li>Světle žlutý Kocbeře</li>
+              <li>Bíložlutý Vyhnánov</li>
+              <li>Červený Javorka</li>
+              <li>Šedozelený Dubenec</li>
+              <li>Šedožlutý Krákorka</li>
+            </ul>
+          </div>
+
+          {/* 2. Sloupec - RULY A DROBA */}
+          <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col border border-gray-100 items-center">
+            <h3 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2 w-full">
+              RULY
+            </h3>
+            <ul className="text-gray-700 space-y-2 text-center mb-6">
+              <li>Balkánské ruly (různé odstíny)</li>
+              <li>Stébelnatá šedočerná rula Otmuchow</li>
+            </ul>
+
+            <h3 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2 w-full">
+              MORAVSKÁ DROBA
+            </h3>
+            <ul className="text-gray-700 space-y-2 text-center">
+              <li>Tradiční moravský kámen</li>
+            </ul>
+          </div>
+
+          {/* 3. Sloupec - ŽULY A OSTATNÍ */}
+          <div className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col border border-gray-100 items-center">
+            <h3 className="text-xl font-bold mb-4 text-slate-800 border-b pb-2 w-full">
+              ŽULY A TVRDÉ KAMENY
+            </h3>
+            <ul className="text-gray-700 space-y-2 text-center">
+              <li>Žuly v různých odstínech</li>
+              <li>Amfibolit</li>
+              <li>Kvarcit</li>
+            </ul>
+          </div>
+
+        </div>
       </section>
 
       <section
@@ -177,16 +294,13 @@ export default function App() {
         {/* Obsah: Text + Obrázek */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 py-12">
           {/* Text */}
-          <div className="max-w-md text-left ">
+          <div className="max-w-md text-center ">
             <p className="text-lg leading-relaxed">
-              Jmenuji se Vítězslav Bucháček a více než 10 let tvořím realizace kamenných prvnků všeho druhu. Pečlivost a profesionální přístup 
-              jsou pro mě samozřejmostí, protože věřím, že jen tak vznikají skutečně krásné a trvanlivé výsledky. 
-              Rád pomohu i vám proměnit vaše představy ve skutečnost.
+              Naše rodinná firma tvoří kamenná návrhy a realizace již déle než 10 let. Pečlivost a profesionální přístup jsou pro nás samozřejmostí, protože věříme, že jen tak vznikají skutečně krásné a trvanlivé výsledky. Rádi pomúžeme i Vám proměnit vaše představy ve skutečnost.
             </p>
           </div>
 
-          {/* Obrázek (zatím čtverec) */}
-          <div className="w-64 h-64 bg-gray-200 border border-gray-300"></div>
+          
         </div>
       </section>
 
@@ -196,11 +310,11 @@ export default function App() {
         id="kontakt"
         className="bg-white border-t border-gray-200 py-16"
       >
-        <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 text-center text-[#666666] font-space-mono text-base">
+        <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 text-center text-[#666666]  text-base">
           <div>
             <h3 className="text-lg font-semibold mb-2">Kontakt</h3>
             <p className="mb-1">+420 123 456 789</p>
-            <p>vb.design@gmail.com</p>
+            <p>kamendomu@gmail.com</p>
           </div>
 
           <div>
@@ -247,7 +361,7 @@ export default function App() {
         </div>
 
         <div className="text-center text-sm text-gray-400 mt-12 font-space-mono">
-          © {new Date().getFullYear()} VB-Design. Všechna práva vyhrazena.
+          © {new Date().getFullYear()} Kamendomu. Všechna práva vyhrazena.
         </div>
       </footer>
 
