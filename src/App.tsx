@@ -23,15 +23,15 @@ export default function App() {
     piskovce: [
       { name: "Zelený Záměl", src: "/images/kameny/zelený záměl.jpg" },
       { name: "Bílý Božanov", src: "/images/kameny/bozanov.jpeg" },
-      { name: "Žlutý Kocbeře", src: "/images/kameny/kocbere.PNG" },
+      { name: "Žlutý Kocbeře", src: "/images/kameny/kocbere2.png" },
       { name: "Bíložlutý Vyhnánov", src: "/images/kameny/vyhnánov.jfif" },
       { name: "Červený Javorka", src: "/images/kameny/javorka.jpg" },
       { name: "Šedozelený Dubenec", src: "/images/kameny/Dubenec.jpg" },
       { name: "Šedožlutý Krákorka", src: "/images/kameny/krakorka.jpg" },
     ],
     ruly: [
-      { name: "Balkánské ruly", src: "/images/kameny/rula.JPG" },
-      { name: "Rula Otmuchow", src: "/images/kameny/rula otmuchow.jpg" },
+      { name: "Balkánské ruly", src:  "/images/kameny/rula otmuchow.jpg"},
+      { name: "Rula Otmuchow", src:  "/images/kameny/rula.JPG"},
       { name: "Moravská Droba", src: "/images/kameny/droba.jpeg" },
     ],
     zuly: [
@@ -154,21 +154,39 @@ export default function App() {
         <img
           src={jezirko}
           alt="Jezírko"
-          className="w-full h-full object-cover opacity-80"
+          className="absolute inset-0 w-full h-full object-cover opacity-80"
         />
-        <div className="absolute inset-0 flex items-end justify-start px-10 pb-12">
-          <div className="text-white space-y-4 max-w-xs sm:max-w-md">
-            <img src={logo} alt="Logo" className="w-64 h-auto" />
+        {/* HLAVNÍ KONTEJNER:
+            - Na mobilu: 'flex flex-col' (seřadí prvky pod sebe a vycentruje je)
+            - Na PC (md): 'md:block' (umožní absolutní pozicování jako dřív)
+        */}
+        <div className="relative z-10 w-full h-full flex flex-col items-center justify-center md:block">
+          
+          {/* LOGO:
+              - Na mobilu: má mezeru dole (mb-8) a je uprostřed
+              - Na PC (md): skočí do levého dolního rohu (absolute bottom-12 left-10)
+          */}
+          <div className="mb-8 md:mb-0 md:absolute md:bottom-12 md:left-10 px-4">
+            <img 
+              src={logo} 
+              alt="Logo" 
+              className="w-56 md:w-64 h-auto drop-shadow-lg" 
+            />
           </div>
-        </div>
 
-        <div className="absolute top-1/2 right-20 transform -translate-y-[-60px] translate-x-[-40px] 
-                p-6 max-w-2xl rounded-2xl bg-gray-900/20">
-          <p className="text-white text-lg leading-relaxed text-center">
-            Naše firma poskytuje služby zaměřené na úpravu a zvelebování zahrad,
-          okolí domů a případně i drobné úpravy domů samotných
-          (parapety, vnitřní kamenné obklady, zárubně, obklady podezdívek).
-          </p>
+          {/* TEXT:
+              - Na mobilu: má tmavší pozadí pro čitelnost a je vycentrovaný
+              - Na PC (md): skočí doprava nahoru (absolute top-1/2 right-20)
+          */}
+          <div className="mx-4 p-6 rounded-2xl bg-black/40 backdrop-blur-sm
+                          md:absolute md:top-1/2 md:right-20 md:transform md:-translate-y-[-60px] md:translate-x-[-40px] md:max-w-2xl md:bg-gray-900/20 md:backdrop-blur-0">
+            <p className="text-white text-lg leading-relaxed text-center drop-shadow-md">
+              Naše firma poskytuje služby zaměřené na úpravu a zvelebování zahrad,
+              okolí domů a případně i drobné úpravy domů samotných
+              (parapety, vnitřní kamenné obklady, zárubně, obklady podezdívek).
+            </p>
+          </div>
+
         </div>
       </section>
 
@@ -218,7 +236,7 @@ export default function App() {
       {/* MATERIÁLY - UPRAVENO NA DLAŽDICE */}
       <section
         id="materiály"
-        className="min-h-screen flex flex-col items-center justify-center bg-white px-6 py-16 text-center"
+        className="scroll-mt-14 min-h-screen flex flex-col items-center justify-center bg-white px-6 py-16 text-center"
       >
         <h2 className="text-3xl font-bold mb-6 uppercase tracking-wide text-gray-800">
           Materiály
