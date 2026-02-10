@@ -105,9 +105,9 @@ export default function App() {
   // --- DATA PRO SLUŽBY (FOTKY MÍSTO ODRÁŽEK) ---
   const servicesImages: Record<string, ServiceImage[]> = {
     zahrada: [
-      { name: "Grafické návrhy zahrad", src: "/images/sluzby/navrh.jpg" },
-      { name: "Realizace zahrad", src: "/images/sluzby/realizace.jpg" },
-      { name: "Úpravy stávajících zahrad", src: "/images/IMG-20250807-WA0025.jpg" },
+      { name: "Grafické návrhy zahrad", src: "/images/služby/plán výsadby2.png" },
+      { name: "Realizace zahrad", src: "/images/IMG-20250807-WA0025.jpg" },
+      { name: "Úpravy stávajících zahrad", src: "/images/služby/Ústí Úprava I (1).jpg" },
       { name: "Vodní prvky (jezírka, vodopády, potoky)", src: "/images/IMG-20250807-WA0022.jpg" },
       { name: "Zahradní zídky a skalky", src: "/images/služby/zahradni zidky.jpg" },
     ],
@@ -116,15 +116,15 @@ export default function App() {
       { name: "Opěrné zdi a zahradní zídky", src: "/images/služby/zidka.jpg" },
       { name: "Vyvýšené záhony a skalky", src: "/images/služby/zahon.jpg" },
       { name: "Různé typy schodišť", src: "/images/IMG-20250807-WA0007.jpg" },
-      { name: "Obklady soklů a podezdívek", src: "/images/služby/obklady.jpg" },
-      { name: "Parapety a dveřní zárubně", src: "/images/sluzby/parapety.jpg" },
-      { name: "Ohniště a grily", src: "/images/sluzby/gril.jpg" },
-      { name: "Zahradní posezení", src: "/images/sluzby/posezeni.jpg" },
+      { name: "Obklady soklů a podezdívek", src: "/images/posuvna brana.jpg" },
+      { name: "Parapety a dveřní zárubně", src: "/images/služby/parapet.jpg" },
+      { name: "Ohniště a grily", src: "/images/služby/gril.jpeg" },
+      { name: "Zahradní posezení", src: "/images/služby/ohniste3.JPG" },
       { name: "Terasy a pergoly", src: "/images/služby/pergola.jpg" },
     ],
     drevo: [
-      { name: "Terasy a mola", src: "/images/služby/terasa.jpg" },
-      { name: "Posezení v kombinaci dřevo a kámen", src: "/images/služby/posezeni.jpg" },
+      { name: "Terasy a mola", src: "/images/služby/posezeni.jpg" },
+      { name: "Posezení v kombinaci dřevo a kámen", src: "/images/služby/drevo kamen.jpeg" },
     ]
   };
 
@@ -133,9 +133,9 @@ export default function App() {
     piskovce: [
       { name: "Zelený Záměl", src: "/images/kameny/zelený záměl.jpg" },
       { name: "Bílý Božanov", src: "/images/kameny/bozanov.jpeg" },
-      { name: "Žlutý Kocbeře", src: "/images/kameny/kocbere2.png" },
+      { name: "Žlutý Kocbeře", src: "/images/kameny/Pískovec Kocbeře.JPG" },
       { name: "Bíložlutý Vyhnánov", src: "/images/kameny/vyhnánov.jfif" },
-      { name: "Červený Javorka", src: "/images/kameny/javorka.jpg" },
+      { name: "Červený Javorka", src: "/images/kameny/červený pískovec.JPG" },
       { name: "Šedozelený Dubenec", src: "/images/kameny/Dubenec.jpg" },
       { name: "Šedožlutý Krákorka", src: "/images/kameny/krakorka.jpg" },
     ],

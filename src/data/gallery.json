@@ -1,6 +1,6 @@
 [
   { "src": "/images/IMG-20250807-WA0001.jpg", "alt": "Foto 1" },
-  { "src": "/images/IMG-20250807-WA0002.jpg", "alt": "Foto 2" },
+  { "src": "/images/gallery/20220515_150457.jpg", "alt": "Foto 2" },
   { "src": "/images/IMG-20250807-WA0003.jpg", "alt": "Foto 3" },
   { "src": "/images/IMG-20250807-WA0004.jpg", "alt": "Foto 4" },
   { "src": "/images/IMG-20250807-WA0005.jpg", "alt": "Foto 5" },
@@ -23,5 +23,17 @@
   { "src": "/images/IMG-20250807-WA0022.jpg", "alt": "Foto 22" },
   { "src": "/images/IMG-20250807-WA0023.jpg", "alt": "Foto 23" },
   { "src": "/images/IMG-20250807-WA0024.jpg", "alt": "Foto 24" },
-  { "src": "/images/IMG-20250807-WA0025.jpg", "alt": "Foto 25" }
+  { "src": "/images/IMG-20250807-WA0025.jpg", "alt": "Foto 25" },
+  { "src": "/images/gallery/gallery1.jpg", "alt": "Foto 26" },
+  { "src": "/images/gallery/gallery2.jpg", "alt": "Foto 27" },
+  { "src": "/images/gallery/gallery3.jpg", "alt": "Foto 28" },
+  { "src": "/images/gallery/gallery4.JPG", "alt": "Foto 29" },
+  { "src": "/images/gallery/gallery5.jpeg", "alt": "Foto 30" },
+  { "src": "/images/gallery/gallery6.jpeg", "alt": "Foto 31" },
+  { "src": "/images/gallery/gallery7.jpeg", "alt": "Foto 32" },
+  { "src": "/images/gallery/terasa.jpg", "alt": "Foto 33" },
+  { "src": "/images/gallery/20220423_163234.jpg", "alt": "Foto 34" },
+  { "src": "/images/gallery/20221017_171903.jpg", "alt": "Foto 35" },
+  { "src": "/images/gallery/20221017_173416.jpg", "alt": "Foto 36" },
+  { "src": "/images/gallery/Pamětní kámen.jpg", "alt": "Foto 37" }
 ]
