@@ -221,70 +221,70 @@ const onTouchEnd = () => {
       </p>
 
       {lightboxImages.length > 1 && (
-        <>
-          {/* Levá šipka */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setLightboxIndex(
-                lightboxIndex === 0
-                  ? lightboxImages.length - 1
-                  : lightboxIndex - 1
-              );
-            }}
-                  className="absolute left-6 top-1/2 -translate-y-1/2 
-                            bg-black/40 backdrop-blur-sm 
-                            hover:bg-black/70 
-                            text-white 
-                            p-4 
-                            rounded-full 
-                            transition-all duration-300 
-                            shadow-lg"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-8 w-8"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
+                <>
+                  {/* Levá šipka */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setLightboxIndex(
+                        lightboxIndex === 0
+                          ? lightboxImages.length - 1
+                          : lightboxIndex - 1
+                      );
+                    }}
+                    className="fixed left-4 top-1/2 -translate-y-1/2
+                              bg-black/40 backdrop-blur-md
+                              hover:bg-black/70
+                              text-white
+                              px-1 py-3
+                              rounded-2xl
+                              transition-all duration-300
+                              shadow-xl"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-7 w-7"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
 
-                {/* Pravá šipka */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setLightboxIndex(
-                      lightboxIndex === lightboxImages.length - 1
-                        ? 0
-                        : lightboxIndex + 1
-                    );
-                  }}
-                  className="absolute right-6 top-1/2 -translate-y-1/2 
-                            bg-black/40 backdrop-blur-sm 
-                            hover:bg-black/70 
-                            text-white 
-                            p-4 
-                            rounded-full 
-                            transition-all duration-300 
-                            shadow-lg"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-8 w-8"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
+                  {/* Pravá šipka */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setLightboxIndex(
+                        lightboxIndex === lightboxImages.length - 1
+                          ? 0
+                          : lightboxIndex + 1
+                      );
+                    }}
+                    className="fixed right-4 top-1/2 -translate-y-1/2
+                              bg-black/40 backdrop-blur-md
+                              hover:bg-black/70
+                              text-white
+                              px-1 py-3
+                              rounded-2xl
+                              transition-all duration-300
+                              shadow-xl"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </>
-            )}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-7 w-7"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </>
+              )}
           </div>
         </div>
       )}
