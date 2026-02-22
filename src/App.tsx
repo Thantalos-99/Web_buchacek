@@ -14,7 +14,7 @@ interface MiniServiceGalleryProps {
   images: ServiceImage[];
   title: string;
   colorClass: string;
-  onImageClick: (img: ServiceImage) => void;
+  onImageClick: (images: ServiceImage[], index: number) => void;
 }
 
 // --- 2. KOMPONENTA PRO MINI GALERIE VE SLUŽBÁCH ---
@@ -49,7 +49,7 @@ const MiniServiceGallery = ({
           src={images[currentIndex].src} 
           alt={images[currentIndex].name} 
           className="w-full h-full object-cover transition duration-500 cursor-pointer hover:scale-105"
-          onClick={() => onImageClick(images[currentIndex])}
+          onClick={() => onImageClick(images, currentIndex)}
         />
         
         {/* Popisek + počítadlo */}
@@ -88,8 +88,44 @@ const MiniServiceGallery = ({
 // --- 3. HLAVNÍ APLIKACE ---
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<ServiceImage | null>(null);
+  const [lightboxImages, setLightboxImages] = useState<ServiceImage[] | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number>(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
+  const minSwipeDistance = 50;
+
+
+  const onTouchStart = (e: React.TouchEvent) => {
+  setTouchEnd(null);
+  setTouchStart(e.targetTouches[0].clientX);
+};
+
+const onTouchMove = (e: React.TouchEvent) => {
+  setTouchEnd(e.targetTouches[0].clientX);
+};
+
+const onTouchEnd = () => {
+  if (!touchStart || !touchEnd) return;
+
+  const distance = touchStart - touchEnd;
+  const isLeftSwipe = distance > minSwipeDistance;
+  const isRightSwipe = distance < -minSwipeDistance;
+
+  if (isLeftSwipe) {
+    // další obrázek
+    setLightboxIndex((prev) =>
+      prev === lightboxImages!.length - 1 ? 0 : prev + 1
+    );
+  }
+
+  if (isRightSwipe) {
+    // předchozí obrázek
+    setLightboxIndex((prev) =>
+      prev === 0 ? lightboxImages!.length - 1 : prev - 1
+    );
+  }
+};
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -155,33 +191,100 @@ export default function App() {
     <div className="bg-white min-h-screen font-mono scroll-smooth pt-20 relative">
       
       {/* --- LIGHTBOX (ZVĚTŠOVÁNÍ OBRÁZKŮ) --- */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm animate-fade-in"
-          onClick={() => setSelectedImage(null)}
-        >
-          <button
-            onClick={() => setSelectedImage(null)}
-            className="absolute top-6 right-6 text-white hover:text-[#9C834D] transition transform hover:scale-110 p-2"
-            aria-label="Zavřít"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+{lightboxImages && (
+  <div 
+    className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm"
+    onClick={() => setLightboxImages(null)}
+  >
+    <button
+      onClick={() => setLightboxImages(null)}
+      className="absolute top-6 right-6 text-white hover:text-[#9C834D] transition p-2"
+    >
+      ✕
+    </button>
 
-          <div 
-            className="relative max-w-5xl max-h-[90vh] flex flex-col items-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img 
-              src={selectedImage.src} 
-              alt={selectedImage.name} 
-              className="max-h-[85vh] max-w-full object-contain rounded-lg shadow-2xl"
-            />
-            <p className="text-white text-xl mt-4 font-bold tracking-wide">
-              {selectedImage.name}
-            </p>
+    <div 
+        className="relative max-w-5xl max-h-[90vh] flex flex-col items-center"
+        onClick={(e) => e.stopPropagation()}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+      <img 
+        src={lightboxImages[lightboxIndex].src}
+        alt={lightboxImages[lightboxIndex].name}
+        className="max-h-[85vh] max-w-full object-contain rounded-lg shadow-2xl"
+      />
+
+      <p className="text-white text-xl mt-4 font-bold tracking-wide">
+        {lightboxImages[lightboxIndex].name}
+      </p>
+
+      {lightboxImages.length > 1 && (
+        <>
+          {/* Levá šipka */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIndex(
+                lightboxIndex === 0
+                  ? lightboxImages.length - 1
+                  : lightboxIndex - 1
+              );
+            }}
+                  className="absolute left-6 top-1/2 -translate-y-1/2 
+                            bg-black/40 backdrop-blur-sm 
+                            hover:bg-black/70 
+                            text-white 
+                            p-4 
+                            rounded-full 
+                            transition-all duration-300 
+                            shadow-lg"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-8 w-8"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                {/* Pravá šipka */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxIndex(
+                      lightboxIndex === lightboxImages.length - 1
+                        ? 0
+                        : lightboxIndex + 1
+                    );
+                  }}
+                  className="absolute right-6 top-1/2 -translate-y-1/2 
+                            bg-black/40 backdrop-blur-sm 
+                            hover:bg-black/70 
+                            text-white 
+                            p-4 
+                            rounded-full 
+                            transition-all duration-300 
+                            shadow-lg"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-8 w-8"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
@@ -260,7 +363,10 @@ export default function App() {
               images={servicesImages.zahrada} 
               title="ZAHRADA" 
               colorClass="text-green-700" 
-              onImageClick={setSelectedImage}
+              onImageClick={(images, index) => {
+              setLightboxImages(images);
+              setLightboxIndex(index);
+}}
             />
           </div>
 
@@ -270,7 +376,10 @@ export default function App() {
               images={servicesImages.kamen} 
               title="KAMENICKÉ PRÁCE" 
               colorClass="text-gray-700"
-              onImageClick={setSelectedImage} 
+              onImageClick={(images, index) => {
+              setLightboxImages(images);
+              setLightboxIndex(index);
+}} 
             />
           </div>
 
@@ -280,7 +389,10 @@ export default function App() {
               images={servicesImages.drevo} 
               title="DŘEVO V ZAHRADĚ" 
               colorClass="text-amber-700"
-              onImageClick={setSelectedImage} 
+              onImageClick={(images, index) => {
+              setLightboxImages(images);
+              setLightboxIndex(index);
+}}
             />
           </div>
         </div>
@@ -300,7 +412,10 @@ export default function App() {
             <h3 className="text-xl font-bold mb-4 text-amber-600 border-b pb-2 w-full">PÍSKOVCE</h3>
             <div className="grid grid-cols-2 gap-3 w-full">
               {materialsData.piskovce.map((item, index) => (
-                <div key={index} onClick={() => setSelectedImage(item)} className="relative group overflow-hidden rounded-md shadow-sm aspect-square cursor-zoom-in">
+                <div key={index} onClick={() => {
+  setLightboxImages([item]);
+  setLightboxIndex(0);
+}} className="relative group overflow-hidden rounded-md shadow-sm aspect-square cursor-zoom-in">
                   <img src={item.src} alt={item.name} className="object-cover w-full h-full transform group-hover:scale-110 transition duration-500" />
                   <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-1">
                     <p className="text-white text-xs font-bold uppercase">{item.name}</p>
@@ -314,7 +429,10 @@ export default function App() {
             <h3 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2 w-full">RULY A DROBA</h3>
             <div className="grid grid-cols-2 gap-3 w-full">
               {materialsData.ruly.map((item, index) => (
-                <div key={index} onClick={() => setSelectedImage(item)} className="relative group overflow-hidden rounded-md shadow-sm aspect-square cursor-zoom-in">
+                <div key={index} onClick={() => {
+  setLightboxImages([item]);
+  setLightboxIndex(0);
+}} className="relative group overflow-hidden rounded-md shadow-sm aspect-square cursor-zoom-in">
                   <img src={item.src} alt={item.name} className="object-cover w-full h-full transform group-hover:scale-110 transition duration-500" />
                   <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-1">
                     <p className="text-white text-xs font-bold uppercase">{item.name}</p>
@@ -328,7 +446,10 @@ export default function App() {
             <h3 className="text-xl font-bold mb-4 text-slate-800 border-b pb-2 w-full">TVRDÉ KAMENY</h3>
             <div className="grid grid-cols-2 gap-3 w-full">
               {materialsData.zuly.map((item, index) => (
-                <div key={index} onClick={() => setSelectedImage(item)} className="relative group overflow-hidden rounded-md shadow-sm aspect-square cursor-zoom-in">
+                <div key={index} onClick={() => {
+                setLightboxImages([item]);
+                setLightboxIndex(0);
+}} className="relative group overflow-hidden rounded-md shadow-sm aspect-square cursor-zoom-in">
                   <img src={item.src} alt={item.name} className="object-cover w-full h-full transform group-hover:scale-110 transition duration-500" />
                   <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-1">
                     <p className="text-white text-xs font-bold uppercase">{item.name}</p>
