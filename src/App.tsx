@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // Ujisti se, že cesty k těmto importům jsou u tebe správně:
 import jezirko from "./assets/jezirko.jpg";
 import logo from "./assets/logos/kamendomu.svg";
@@ -137,7 +137,21 @@ const onTouchEnd = () => {
     { text: "O NÁS", id: "o_nás" },
     { text: "KONTAKT", id: "kontakt" },
   ];
+  
+  useEffect(() => {
+    if (lightboxImages) {
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    } else {
+      document.body.style.overflow = "auto";
+      document.body.style.touchAction = "auto";
+    }
 
+    return () => {
+      document.body.style.overflow = "auto";
+      document.body.style.touchAction = "auto";
+    };
+  }, [lightboxImages]);
   // --- DATA PRO SLUŽBY (FOTKY MÍSTO ODRÁŽEK) ---
   const servicesImages: Record<string, ServiceImage[]> = {
     zahrada: [
