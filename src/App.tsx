@@ -92,7 +92,8 @@ export default function App() {
   const [lightboxIndex, setLightboxIndex] = useState<number>(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
-
+  const [isEmblaModalOpen, setIsEmblaModalOpen] = useState(false);
+  
   const minSwipeDistance = 50;
 
 
@@ -139,9 +140,31 @@ const onTouchEnd = () => {
   ];
   
   useEffect(() => {
-    if (lightboxImages) {
+    // Funkce pro zavření klávesou Escape a listování šipkami
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setLightboxImages(null);
+      }
+
+      // Šipky budou fungovat jen tehdy, pokud je lightbox se službami aktivní
+      if (lightboxImages && lightboxImages.length > 0) {
+        if (e.key === "ArrowLeft") {
+          setLightboxIndex((prevIndex) =>
+            prevIndex === 0 ? lightboxImages.length - 1 : prevIndex - 1
+          );
+        } else if (e.key === "ArrowRight") {
+          setLightboxIndex((prevIndex) =>
+            prevIndex === lightboxImages.length - 1 ? 0 : prevIndex + 1
+          );
+        }
+      }
+    };
+
+    if (lightboxImages || isEmblaModalOpen) {
       document.body.style.overflow = "hidden";
       document.body.style.touchAction = "none";
+      // Začneme poslouchat stisknutí kláves
+      window.addEventListener("keydown", handleKeyDown);
     } else {
       document.body.style.overflow = "auto";
       document.body.style.touchAction = "auto";
@@ -150,9 +173,11 @@ const onTouchEnd = () => {
     return () => {
       document.body.style.overflow = "auto";
       document.body.style.touchAction = "auto";
+      // Uklidíme posluchač, když se modal zavře
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [lightboxImages]);
-  // --- DATA PRO SLUŽBY (FOTKY MÍSTO ODRÁŽEK) ---
+  }, [lightboxImages, isEmblaModalOpen]);
+// --- DATA PRO SLUŽBY (FOTKY MÍSTO ODRÁŽEK) ---
   const servicesImages: Record<string, ServiceImage[]> = {
     zahrada: [
       { name: "Grafické návrhy zahrad", src: "/images/služby/plán výsadby2.png" },
@@ -212,7 +237,8 @@ const onTouchEnd = () => {
   >
     <button
       onClick={() => setLightboxImages(null)}
-      className="absolute top-6 right-6 text-white hover:text-[#9C834D] transition p-2"
+      className="absolute top-4 right-4 md:top-6 md:right-6 text-white text-l md:text-1xl hover:text-[#9C834D] transition-colors duration-300 p-3 z-50 select-none cursor-pointer"
+      aria-label="Zavřít"
     >
       ✕
     </button>
@@ -246,23 +272,10 @@ const onTouchEnd = () => {
                           : lightboxIndex - 1
                       );
                     }}
-                    className="fixed left-4 top-1/2 -translate-y-1/2
-                              bg-black/40 backdrop-blur-md
-                              hover:bg-black/70
-                              text-white
-                              px-1 py-3
-                              rounded-2xl
-                              transition-all duration-300
-                              shadow-xl"
+                    className="fixed left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition duration-300 shadow-lg z-50"
+                    aria-label="Previous image"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-7 w-7"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                     </svg>
                   </button>
@@ -277,23 +290,10 @@ const onTouchEnd = () => {
                           : lightboxIndex + 1
                       );
                     }}
-                    className="fixed right-4 top-1/2 -translate-y-1/2
-                              bg-black/40 backdrop-blur-md
-                              hover:bg-black/70
-                              text-white
-                              px-1 py-3
-                              rounded-2xl
-                              transition-all duration-300
-                              shadow-xl"
+                    className="fixed right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition duration-300 shadow-lg z-50"
+                    aria-label="Next image"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-7 w-7"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
@@ -479,7 +479,8 @@ const onTouchEnd = () => {
       <section id="galerie" className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-8">
         <h2 className="text-3xl font-bold mb-8 mt-16">GALERIE</h2>
         <div className="w-full max-w-4xl rounded-lg overflow-hidden">
-          <EmblaGallery />
+          {/* Propojíme stav s komponentou */}
+          <EmblaGallery onModalToggle={setIsEmblaModalOpen} />
         </div>
       </section>
 
@@ -519,9 +520,17 @@ const onTouchEnd = () => {
       </footer>
 
       {/* --- ŠIPKA NAHORU --- */}
-      <button onClick={scrollToTop} className="fixed bottom-6 right-6 p-3 rounded-full bg-black/50 text-white hover:bg-black/80 transition duration-300 shadow-lg z-50" aria-label="Scroll to top">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" /></svg>
-      </button>
+      {!lightboxImages && !isEmblaModalOpen && (
+        <button 
+          onClick={scrollToTop} 
+          className="fixed bottom-6 right-6 p-3 rounded-full bg-black/50 text-white hover:bg-black/80 transition duration-300 shadow-lg z-50 block"
+          aria-label="Scroll to top"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }
