@@ -256,7 +256,7 @@ const onTouchEnd = () => {
         className="max-h-[85vh] max-w-full object-contain rounded-lg shadow-2xl"
       />
 
-      <p className="text-white text-xl mt-4 font-bold tracking-wide">
+      <p className="text-white text-sm md:text-xl mt-4 font-bold tracking-wide text-center">
         {lightboxImages[lightboxIndex].name}
       </p>
 

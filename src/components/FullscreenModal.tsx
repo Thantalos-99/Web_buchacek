@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 type Props = {
   src: string
@@ -9,19 +9,32 @@ type Props = {
 }
 
 export default function FullscreenModal({ src, alt, onClose, onPrev, onNext }: Props) {
-  
-  // Posluchač klávesnice pro Escape a šipky do stran
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const minSwipeDistance = 50
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    if (distance > minSwipeDistance) onNext()
+    if (distance < -minSwipeDistance) onPrev()
+  }
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose()
-      } else if (e.key === "ArrowLeft") {
-        onPrev()
-      } else if (e.key === "ArrowRight") {
-        onNext()
-      }
+      if (e.key === "Escape") onClose()
+      else if (e.key === "ArrowLeft") onPrev()
+      else if (e.key === "ArrowRight") onNext()
     }
-
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [onClose, onPrev, onNext])
@@ -30,6 +43,9 @@ export default function FullscreenModal({ src, alt, onClose, onPrev, onNext }: P
     <div
       className="fixed inset-0 bg-black/90 flex items-center justify-center z-[100] backdrop-blur-sm"
       onClick={onClose}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
     >
       {/* Levá šipka */}
       <button
@@ -61,7 +77,7 @@ export default function FullscreenModal({ src, alt, onClose, onPrev, onNext }: P
         </svg>
       </button>
 
-      {/* Tlačítko Zavřít (X) - Opraveno a sjednoceno na 18px */}
+      {/* Tlačítko Zavřít */}
       <button
         onClick={e => { e.stopPropagation(); onClose() }}
         className="absolute top-4 right-4 md:top-6 md:right-6 text-white font-light hover:text-[#9C834D] transition-colors duration-300 p-3 z-50 select-none cursor-pointer"
